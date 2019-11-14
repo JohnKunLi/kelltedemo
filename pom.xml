@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>ins</groupId>
+	<artifactId>kellte-server</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>kellte-server</name>
+	<parent>
+		<groupId>ins.framework</groupId>
+		<artifactId>ins-framework-parent</artifactId>
+		<version>6.0.9</version>
+	</parent>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-bom</artifactId>
+				<type>pom</type>
+				<version>${drools.version}</version>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<properties>
+		<ins-framework-web.version>6.0.11</ins-framework-web.version>
+		<ins-framework-mybatis.version>6.0.11</ins-framework-mybatis.version>
+		<ins-framework-mybatis-generator.version>6.2.1-SNAPSHOT</ins-framework-mybatis-generator.version>
+		<ins-framework-aoplog.version>6.0.0</ins-framework-aoplog.version>
+		<ins-framework-hystrix.version>6.0.0-SNAPSHOT</ins-framework-hystrix.version>
+		<!-- <ins-framework-auth.version>6.0.0-SNAPSHOT</ins-framework-auth.version> -->
+		<drools.version>7.1.0.Final</drools.version>
+		<springloaded.version>1.2.6.RELEASE</springloaded.version>
+	</properties>
+
+	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<repositories>
+		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+		<repository>
+			<id>jsptz-nexus</id>
+			<name>Team 
+				Nexus Repository</name>
+			<url>http://repo.jsptz.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+	
+	<!-- kettle start-->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.12</version>
+		</dependency>
+		<dependency>
+			<groupId>avalon-framework</groupId>
+			<artifactId>avalon-framework</artifactId>
+			<version>4.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>20040616</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-vfs</groupId>
+			<artifactId>commons-vfs</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>rhino</groupId>
+			<artifactId>js</artifactId>
+			<version>1.7R2</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>jug</groupId>
+			<artifactId>jug</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scannotation</groupId>
+			<artifactId>scannotation</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>kettle-core</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/kettle-core.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>kettle-db</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/kettle-db.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>kettle-engine</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/WebContent/WEB-INF/lib/kettle-engine.jar</systemPath>
+		</dependency>
+		<!-- kettle end -->
+		
+		<!--oralce驱动  -->
+		<dependency>
+			<groupId>com.github.noraui</groupId>
+			<artifactId>ojdbc7</artifactId>
+			<version>12.1.0.2</version>
+		</dependency>
+		<!--sqlServer驱动  -->
+		<dependency>
+			<groupId>com.microsoft</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ins.framework</groupId>
+			<artifactId>ins-framework-hystrix</artifactId>
+			<version>${ins-framework-hystrix.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-mybatis</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>ins-framework-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>ins.framework</groupId>
+					<artifactId>
+						ins-framework-mybatis-generator
+					</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- hystrix end -->
+		<dependency>
+			<groupId>ins.framework</groupId>
+			<artifactId>ins-framework-web</artifactId>
+			<version>${ins-framework-web.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ins.framework</groupId>
+			<artifactId>ins-framework-mybatis</artifactId>
+			<version>${ins-framework-mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ins.framework</groupId>
+			<artifactId>ins-framework-mybatis-generator</artifactId>
+			<version>${ins-framework-mybatis-generator.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ins.framework</groupId>
+			<artifactId>ins-framework-aoplog</artifactId>
+			<version>${ins-framework-aoplog.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-ribbon</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.37</version>
+		</dependency>
+		<!-- hadoop begin -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-hadoop</artifactId>
+			<version>2.4.0.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>jdk.tools</groupId>
+					<artifactId>jdk.tools</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- hadoop end -->
+		
+		<!-- 自己手动加入的 begin -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- 自己手动加入的 end -->
+		
+		<!-- admin server 监控 -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>1.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<!-- 任务调度器 -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<!-- jxl excel导入工具 -->
+		<dependency>
+		  <groupId>net.sourceforge.jexcelapi</groupId>
+		  <artifactId>jxl</artifactId>
+		  <version>2.6.12</version>
+		</dependency>
+		<!-- JMX-bean management -->
+		<dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+		</dependency>
+		<!-- 热启动 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- redis -->
+		<!-- redis -->
+		
+     <!-- Stream的消息依赖 -->	
+     <dependency>
+       <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+    </dependency>
+		
+	<!-- 任务调度quartz  Start -->  
+		<dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-context-support</artifactId>  
+        </dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<!-- 任务调度quartz  End -->	
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.13</version>
+				<configuration>
+					<imageName>${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>ins.KellteApplicationApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<defaultGoal>compile</defaultGoal>
+	</build>
+</project>

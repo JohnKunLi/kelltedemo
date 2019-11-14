@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: test-kellte Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: LIKUN
+Implementation-Vendor-Id: www.lk.kettle.com
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/test-kellte
+Created-By: Maven Integration for Eclipse
+
